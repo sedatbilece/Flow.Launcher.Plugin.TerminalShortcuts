@@ -1,4 +1,4 @@
-# Plugini derler, Flow Launcher plugins klasörüne kopyalar ve Flow Launcher'ı yeniden başlatır.
+# Builds the plugin, copies it to the Flow Launcher plugins folder, and restarts Flow Launcher.
 
 $pluginName = "TerminalShortcuts"
 $project    = "Flow.Launcher.Plugin.TerminalShortcuts"
@@ -16,7 +16,7 @@ Start-Sleep -Milliseconds 800
 
 Write-Host "Copying to $target ..." -ForegroundColor Cyan
 
-# Mevcut shortcuts.json varsa yedekle
+# Back up existing shortcuts.json if present
 $existingShortcuts = "$target\shortcuts.json"
 $backupShortcuts   = "$env:TEMP\shortcuts.json.bak"
 if (Test-Path $existingShortcuts) {
@@ -26,13 +26,13 @@ if (Test-Path $existingShortcuts) {
 if (Test-Path $target) { Remove-Item $target -Recurse -Force }
 Copy-Item $publishDir -Destination $target -Recurse
 
-# shortcuts.json'u geri yükle (varsa); yoksa publish'teki örnek kalır
+# Restore shortcuts.json if it was backed up; otherwise the example file from publish is used
 if (Test-Path $backupShortcuts) {
     Copy-Item $backupShortcuts -Destination $existingShortcuts -Force
     Remove-Item $backupShortcuts -Force
-    Write-Host "shortcuts.json korundu." -ForegroundColor DarkGray
+    Write-Host "shortcuts.json preserved." -ForegroundColor DarkGray
 } else {
-    Write-Host "shortcuts.json bulunamadı, örnek dosya kullanılıyor." -ForegroundColor DarkGray
+    Write-Host "No existing shortcuts.json found, using example file." -ForegroundColor DarkGray
 }
 
 Write-Host "Starting Flow Launcher..." -ForegroundColor Green

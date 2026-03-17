@@ -22,7 +22,7 @@ public class Main : IPlugin
     {
         var search = query.Search.Trim();
 
-        // "reload" yazılınca ayarları yeniden yükle
+        // Typing "reload" reloads settings without restarting
         if (search.Equals("reload", StringComparison.OrdinalIgnoreCase))
         {
             return new List<Result>
@@ -84,7 +84,7 @@ public class Main : IPlugin
         }
         catch (Exception ex)
         {
-            _context.API.ShowMsg("TerminalShortcuts", $"shortcuts.json okunamadı: {ex.Message}");
+            _context.API.ShowMsg("TerminalShortcuts", $"Failed to read shortcuts.json: {ex.Message}");
             _shortcuts = new List<Shortcut>();
         }
     }
@@ -95,7 +95,7 @@ public class Main : IPlugin
         {
             new Shortcut
             {
-                Name = "Örnek – Proje",
+                Name = "Example – Project",
                 Abbreviation = "prj",
                 Directory = @"C:\Projects\MyProject",
                 Command = "npm start",
@@ -103,7 +103,7 @@ public class Main : IPlugin
             },
             new Shortcut
             {
-                Name = "Örnek – Home (sadece terminal)",
+                Name = "Example – Home (terminal only)",
                 Abbreviation = "home",
                 Directory = @"C:\Users\" + Environment.UserName,
                 Command = "",
@@ -125,7 +125,7 @@ public class Main : IPlugin
         {
             "wt" => BuildWt(dir, cmd, hasCmd),
             "powershell" => BuildPowershell(dir, cmd, hasCmd),
-            _ => BuildCmd(dir, cmd, hasCmd)   // "cmd" veya bilinmeyen
+            _ => BuildCmd(dir, cmd, hasCmd)   // "cmd" or unknown value
         };
 
         try
@@ -134,7 +134,7 @@ public class Main : IPlugin
         }
         catch (Exception ex)
         {
-            _context.API.ShowMsg("TerminalShortcuts", $"Terminal açılamadı: {ex.Message}");
+            _context.API.ShowMsg("TerminalShortcuts", $"Failed to open terminal: {ex.Message}");
         }
     }
 
@@ -178,6 +178,6 @@ public class Main : IPlugin
         };
     }
 
-    // PowerShell argümanı içindeki çift tırnak kaçırma
+    // Escapes double quotes inside a PowerShell argument
     private static string EscapePs(string s) => s.Replace("\"", "`\"");
 }

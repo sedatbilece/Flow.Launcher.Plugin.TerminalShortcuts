@@ -1,41 +1,43 @@
 # Flow Launcher – Terminal Shortcuts Plugin
 
-Flow Launcher'da bir kısaltma yazıldığında, belirlenen dizinde terminal açan ve isteğe bağlı komut çalıştıran plugin.
+A Flow Launcher plugin that opens a terminal in a configured directory and optionally runs a command when an abbreviation is typed.
 
-## Kurulum
+> Turkish documentation: [README_TR.md](README_TR.md)
+
+## Installation
 
 ```powershell
 .\build.ps1
 ```
 
-Script şunları yapar: projeyi derler → Flow Launcher'ı kapatır → plugin klasörüne kopyalar → Flow Launcher'ı yeniden başlatır.
+The script builds the project, stops Flow Launcher, copies the plugin to the plugins folder, and restarts Flow Launcher.
 
-## Kullanım
+## Usage
 
-Flow Launcher'da `t` yazın (varsayılan keyword):
+Type `t` in Flow Launcher (default keyword):
 
-| Yazılan | Sonuç |
+| Input | Result |
 |---|---|
-| `t` | Tüm shortcut'ları listeler |
-| `t prj` | İsim veya kısaltmada "prj" geçenleri filtreler |
-| `t reload` | `shortcuts.json`'u yeniden yükler (restart gerekmez) |
+| `t` | Lists all shortcuts |
+| `t prj` | Filters shortcuts matching "prj" in name or abbreviation |
+| `t reload` | Reloads `shortcuts.json` without restarting |
 
-Bir sonuca Enter bastığınızda terminal açılır, ilgili dizinde konumlanır ve varsa komut otomatik çalıştırılır.
+Pressing Enter on a result opens the terminal in the configured directory and runs the command if one is set.
 
-## Konfigürasyon
+## Configuration
 
-Plugin deploy edildikten sonra config dosyası burada bulunur:
+After deploying, the config file is located at:
 
 ```
 %APPDATA%\FlowLauncher\Plugins\Flow.Launcher.Plugin.TerminalShortcuts\shortcuts.json
 ```
 
-### shortcuts.json formatı
+### shortcuts.json format
 
 ```json
 [
   {
-    "Name": "Proje API",
+    "Name": "Project API",
     "Abbreviation": "api",
     "Directory": "C:\\Projects\\MyApi",
     "Command": "dotnet run",
@@ -44,39 +46,39 @@ Plugin deploy edildikten sonra config dosyası burada bulunur:
 ]
 ```
 
-### Alan açıklamaları
+### Field reference
 
-| Alan | Açıklama | Zorunlu |
+| Field | Description | Required |
 |---|---|---|
-| `Name` | Flow Launcher'da görünen başlık ve arama metni | Evet |
-| `Abbreviation` | Kısa arama kısaltması (örn. `api`, `prj`) | Hayır |
-| `Directory` | Terminalin açılacağı dizin | Evet |
-| `Command` | Dizinde otomatik çalıştırılacak komut | Hayır |
-| `Terminal` | Kullanılacak terminal uygulaması | Hayır (varsayılan: `wt`) |
+| `Name` | Display title and search text in Flow Launcher | Yes |
+| `Abbreviation` | Short search keyword (e.g. `api`, `prj`) | No |
+| `Directory` | Directory where the terminal will open | Yes |
+| `Command` | Command to run automatically in that directory | No |
+| `Terminal` | Terminal application to use | No (default: `wt`) |
 
-### Terminal seçenekleri
+### Terminal options
 
-| Değer | Uygulama |
+| Value | Application |
 |---|---|
-| `wt` | Windows Terminal (varsayılan) |
+| `wt` | Windows Terminal (default) |
 | `powershell` | Windows PowerShell |
-| `cmd` | Komut İstemi |
+| `cmd` | Command Prompt |
 
-`Command` boş bırakılırsa terminal yalnızca belirtilen dizinde açılır, herhangi bir komut çalıştırılmaz.
+If `Command` is empty, the terminal opens in the specified directory without running any command.
 
-### Örnek shortcuts.json
+### Example shortcuts.json
 
 ```json
 [
   {
-    "Name": "Örnek – Proje",
+    "Name": "Example – Project",
     "Abbreviation": "prj",
     "Directory": "C:\\Projects\\MyProject",
     "Command": "npm start",
     "Terminal": "wt"
   },
   {
-    "Name": "Örnek – Home (sadece terminal)",
+    "Name": "Example – Home (terminal only)",
     "Abbreviation": "home",
     "Directory": "C:\\Users\\sedat.bilece",
     "Command": "",
@@ -85,10 +87,10 @@ Plugin deploy edildikten sonra config dosyası burada bulunur:
 ]
 ```
 
-**"Örnek – Proje":** `t prj` yazınca listelenir. Seçilince Windows Terminal `C:\Projects\MyProject` dizininde açılır ve `npm start` komutu çalıştırılır.
+**"Example – Project":** Shown when typing `t prj`. Opens Windows Terminal in `C:\Projects\MyProject` and runs `npm start`.
 
-**"Örnek – Home":** `t home` yazınca listelenir. Seçilince PowerShell `C:\Users\sedat.bilece` dizininde açılır, komut çalıştırılmaz.
+**"Example – Home":** Shown when typing `t home`. Opens PowerShell in `C:\Users\sedat.bilece` without running any command.
 
-### Config değişikliği sonrası
+### After editing the config
 
-Dosyayı düzenledikten sonra Flow Launcher'da `t reload` yazıp Enter'a basmanız yeterlidir. Plugin veya Flow Launcher'ı yeniden başlatmaya gerek yoktur.
+Type `t reload` in Flow Launcher and press Enter. No need to restart the plugin or Flow Launcher.

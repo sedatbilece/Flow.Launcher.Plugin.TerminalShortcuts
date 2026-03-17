@@ -1,13 +1,13 @@
 [
   {
-    "Name": "Örnek – Proje",
+    "Name": "Example – Project",
     "Abbreviation": "prj",
     "Directory": "C:\\Projects\\MyProject",
     "Command": "npm start",
     "Terminal": "wt"
   },
   {
-    "Name": "Örnek – Home (sadece terminal)",
+    "Name": "Example – Home (terminal only)",
     "Abbreviation": "home",
     "Directory": "C:\\Users\\sedat.bilece",
     "Command": "",

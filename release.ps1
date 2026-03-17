@@ -1,4 +1,4 @@
-# Release zip oluşturur.
+# Creates a distributable release zip.
 $project   = "Flow.Launcher.Plugin.TerminalShortcuts"
 $publishDir = "$project\bin\Release\win-x64\publish"
 $zipName   = "TerminalShortcuts.zip"
