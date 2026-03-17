@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Örnek – Proje",
+    "Abbreviation": "prj",
+    "Directory": "C:\\Projects\\MyProject",
+    "Command": "npm start",
+    "Terminal": "wt"
+  },
+  {
+    "Name": "Örnek – Home (sadece terminal)",
+    "Abbreviation": "home",
+    "Directory": "C:\\Users\\sedat.bilece",
+    "Command": "",
+    "Terminal": "powershell"
+  }
+]

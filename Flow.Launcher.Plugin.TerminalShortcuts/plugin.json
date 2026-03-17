@@ -1,0 +1,12 @@
+{
+  "ID": "a3f1c2e4b5d6789012345678901234ab",
+  "ActionKeyword": "t",
+  "Name": "Terminal Shortcuts",
+  "Description": "Yapılandırılmış dizin ve komutlarla terminal açar",
+  "Author": "sedat.bilece",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "",
+  "IcoPath": "icon.png",
+  "ExecuteFileName": "Flow.Launcher.Plugin.TerminalShortcuts.dll"
+}
