@@ -2,7 +2,6 @@
 
 A Flow Launcher plugin that opens a terminal in a configured directory and optionally runs a command when an abbreviation is typed.
 
-> Turkish documentation: [README_TR.md](README_TR.md)
 
 ## Build & Deploy
 
@@ -10,18 +9,23 @@ A Flow Launcher plugin that opens a terminal in a configured directory and optio
 .\build.ps1
 ```
 
-## Project Structure
+
+## Kullanım
+
+Flow Launcher'da `t` yazın (varsayılan keyword):
+
+| Yazılan | Sonuç |
+|---|---|
+| `t` | Tüm shortcut'ları listeler |
+| `t prj` | İsim veya kısaltmada "prj" geçenleri filtreler |
+| `t reload` | `shortcuts.json`'u yeniden yükler (restart gerekmez) |
+
+Bir sonuca Enter bastığınızda terminal açılır, ilgili dizinde konumlanır ve varsa komut otomatik çalıştırılır.
+
+## Konfigürasyon
+
+Plugin deploy edildikten sonra config dosyası burada bulunur:
 
 ```
-Flow.Launcher.Plugin.TerminalShortcuts/   ← plugin source
-    Main.cs
-    Shortcut.cs
-    plugin.json
-    shortcuts.json                        ← user config
-    README.md
-    README_TR.md
-build.ps1                                 ← build & deploy to Flow Launcher
-release.ps1                               ← creates a distributable .zip
 ```
 
-For full documentation see [Flow.Launcher.Plugin.TerminalShortcuts/README.md](Flow.Launcher.Plugin.TerminalShortcuts/README.md).
