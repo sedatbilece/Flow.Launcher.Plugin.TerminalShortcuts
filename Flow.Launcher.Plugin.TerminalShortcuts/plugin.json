@@ -1,12 +1,12 @@
 {
   "ID": "0B7DFE691C334160BE1CECCD4B0696DA",
-  "ActionKeyword": "t",
   "Name": "Terminal Shortcuts",
   "Description": "Opens a terminal in a configured directory and optionally runs a command",
   "Author": "sedat.bilece",
   "Version": "0.0.1",
   "Language": "csharp",
   "Website": "https://github.com/sedatbilece/Flow.Launcher.Plugin.TerminalShortcuts",
-  "IcoPath": "icon.png",
-  "ExecuteFileName": "Flow.Launcher.Plugin.TerminalShortcuts.dll"
+  "UrlDownload": "https://github.com/sedatbilece/Flow.Launcher.Plugin.TerminalShortcuts/releases/download/v0.0.1/TerminalShortcuts.zip",
+  "UrlSourceCode": "https://github.com/sedatbilece/Flow.Launcher.Plugin.TerminalShortcuts/tree/master",
+  "IcoPath": "https://cdn.jsdelivr.net/gh/sedatbilece/Flow.Launcher.Plugin.TerminalShortcuts@master/Flow.Launcher.Plugin.TerminalShortcuts/icon.png"
 }
