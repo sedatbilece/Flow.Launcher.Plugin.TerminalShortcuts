@@ -1,0 +1,45 @@
+name: Publish Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - .github/workflows/*
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Get version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'Flow.Launcher.Plugin.TerminalShortcuts/plugin.json'
+          prop_path: 'Version'
+
+      - run: echo ${{ steps.version.outputs.prop }}
+
+      - name: Build
+        run: dotnet publish Flow.Launcher.Plugin.TerminalShortcuts -c Release -r win-x64 --no-self-contained
+
+      - name: Zip
+        run: Compress-Archive -Path "Flow.Launcher.Plugin.TerminalShortcuts/bin/Release/win-x64/publish/*" -DestinationPath TerminalShortcuts.zip
+        shell: pwsh
+
+      - name: Publish
+        if: success()
+        uses: softprops/action-gh-release@v1
+        with:
+          files: TerminalShortcuts.zip
+          tag_name: "v${{ steps.version.outputs.prop }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
